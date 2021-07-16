@@ -1,3 +1,5 @@
+const { parse } = require("@babel/core");
+
 const artists = [
   {
     "id": 0,
@@ -245,13 +247,18 @@ Example born in 1901 and died in 1959 - included -- born in 1889 and died in 192
 If correct, the function should return ["Salvador Dali", "Frida Kahlo"]*/
 // Hint - Look up the .split() method
 
-function get20s() {
-  // let newArray = array.split(" ");
-  // for(let i = 0; i < array.length; i++){
-  //   if(array[i].years)
-  }
+function get20s(array) {
+  let newArray = []; 
+  for(let i = 0; i < array.length; i++){
+   let century = array[i].years.split(" ");
+    if(century[0] >= 1900 && century[2] <= 2000){
+      newArray.push(array[i].name);
+    }
+  } 
+  return newArray;
+}
 
-
+console.log('Task 4:', get20s(artists));
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 5: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
 Use removeArtist to do the following:
@@ -300,7 +307,13 @@ Use lotsOfArt to do the following:
 For example lotsOfArt(artists); will return ["Amedeo Modigliani", "Rene Magritte", ... "Albrecht Dürer"]*/
 
 function lotsOfArt(array) {
-  
+  let over100 = [];
+  for(let i = 0; i < array.length; i++){ 
+    if(array[i].paintings > 100){
+      over100.push(array[i].name);
+    }
+  } 
+ return over100;
 }
 
 console.log('Task 7:', lotsOfArt(artists));
